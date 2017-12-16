@@ -18,6 +18,7 @@ public class QuizActivity extends AppCompatActivity {
     private ImageButton quiz;
     private int mQuestionIndex;
     private int mScore = 0;
+    private boolean canClick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class QuizActivity extends AppCompatActivity {
         mAnswerViews[1] = (Button) findViewById(R.id.choice2);
         mAnswerViews[2] = (Button) findViewById(R.id.choice3);
         mQuestionIndex = -1;
+        canClick = true;
         nextQuestion();
 
         int size = mAnswerViews.length;
@@ -38,7 +40,9 @@ public class QuizActivity extends AppCompatActivity {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Button button = (Button) view;
+                    if (!canClick) {
+                        return;
+                    }
                     int correctAnswer = mQuestionLibrary.getCorrectAnswer(mQuestionIndex);
                     boolean isCorrect = correctAnswer == currentButtonIndex;
                     if (isCorrect) {
@@ -50,11 +54,13 @@ public class QuizActivity extends AppCompatActivity {
                         Toast.makeText(QuizActivity.this, "wrong", Toast.LENGTH_SHORT).show();
                     }
                     changeButtonColor(view, isCorrect);
+                    canClick = false;
                     view.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             clearButtons();
                             nextQuestion();
+                            canClick = true;
                         }
                     }, 1000);
                 }
