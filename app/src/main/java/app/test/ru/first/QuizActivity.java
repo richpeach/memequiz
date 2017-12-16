@@ -36,11 +36,10 @@ public class QuizActivity extends AppCompatActivity {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //My logic for Button goes in here
                     Button button = (Button) view;
                     if (button.getText() == mAnswer) {
-                        mScore = mScore + 1;
-                        updateScore(mScore, button);
+                        changeButtonColor(view, true);
+                        updateScoreView(mScore + 1);
                         updateQuestion();
                         //This line of code is optiona
                         Toast.makeText(QuizActivity.this, "correct", Toast.LENGTH_SHORT).show();
@@ -52,6 +51,16 @@ public class QuizActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private void changeButtonColor(View view, boolean correct) {
+        int color;
+        if (correct) {
+            color = Color.GREEN;
+        } else {
+            color = Color.RED;
+        }
+        view.setBackgroundColor(color);
     }
 
     private void updateQuestion() {
@@ -68,8 +77,8 @@ public class QuizActivity extends AppCompatActivity {
     }
 
 
-    private void updateScore(int point, View buttonToChangeColor) {
-        mScoreView.setText("" + mScore);
-        buttonToChangeColor.setBackgroundColor(Color.GREEN);
+    private void updateScoreView(int score) {
+        mScore = score;
+        mScoreView.setText("" + score);
     }
 }
