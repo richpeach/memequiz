@@ -79,14 +79,19 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void nextQuestion() {
+        int questionsCount = mQuestionLibrary.getQuestionsCount();
         mQuestionIndex++;
-        int imageId = mQuestionLibrary.getQuestionImageId(mQuestionIndex);
-        quiz.setImageResource(imageId);
+        if (mQuestionIndex < questionsCount) {
+            int imageId = mQuestionLibrary.getQuestionImageId(mQuestionIndex);
+            quiz.setImageResource(imageId);
 
-        int size = mAnswerViews.length;
-        for (int i = 0; i < size; i++) {
-            Button button = mAnswerViews[i];
-            button.setText(mQuestionLibrary.getChoice(mQuestionIndex, i));
+            int size = mAnswerViews.length;
+            for (int i = 0; i < size; i++) {
+                Button button = mAnswerViews[i];
+                button.setText(mQuestionLibrary.getChoice(mQuestionIndex, i));
+            }
+        } else {
+            finish();
         }
     }
 

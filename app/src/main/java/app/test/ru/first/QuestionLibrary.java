@@ -40,4 +40,8 @@ public class QuestionLibrary {
     public int getQuestionImageId(int questionIndex) {
         return mQuestions[questionIndex];
     }
+
+    public int getQuestionsCount() {
+        return mQuestions.length;
+    }
 }
