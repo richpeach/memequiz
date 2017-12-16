@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="app.test.ru.first.MainActivity">
+
+    <ImageView
+        android:scaleType="centerCrop"
+        android:src="@drawable/fiasko"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/play_btn"
+        android:onClick ="onClick1"
+        android:layout_centerHorizontal="true"
+        android:textStyle="italic"
+        android:layout_above="@+id/creator_btn"
+        android:textSize="@dimen/big_text"
+        android:text="@string/play"
+        android:textColor="@color/main_screen_btn_text_color"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp" />
+
+    <Button
+        android:id="@+id/creator_btn"
+        android:layout_centerHorizontal="true"
+        android:textStyle="italic"
+        android:textSize="@dimen/big_text"
+        android:text="@string/info"
+        android:layout_above="@+id/rules_btn"
+        android:textColor="@color/main_screen_btn_text_color"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp" />
+
+    <Button
+        android:id="@+id/rules_btn"
+        android:textStyle="italic"
+        android:textSize="@dimen/big_text"
+        android:text="@string/out"
+        android:textColor="@color/main_screen_btn_text_color"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textSize="@dimen/very_very_big_text"
+        android:textColor="@color/red"
+        android:layout_height="wrap_content"
+        android:text="@string/mem"/>
+
+</RelativeLayout>
+
