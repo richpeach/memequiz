@@ -2,43 +2,42 @@ package app.test.ru.first;
 
 public class QuestionLibrary {
 
-    private String mQuestions [] = {
-            "fiasko",
-            "dratyti",
-            "respect",
-            "The _______ holds the plant upright."
-
+    private int mQuestions[] = {
+            R.drawable.dno,
+            R.drawable.dratyti,
+            R.drawable.fiasko,
+            R.drawable.garold,
+            R.drawable.jdyn,
+            R.drawable.misterdydez,
+            R.drawable.respect,
+            R.drawable.tyt
     };
-
 
     private String mChoices [][] = {
-            {"", "Stem", "Flower"},
-            {"Fruit", "Leaves", "Seeds"},
-            {"Bark", "Flower", "Roots"},
-            {"Flower", "Leaves", "Stem"}
+            {"Dno", "Stem", "Flower"},
+            {"Fruit", "Leaves", "Dratyti"},
+            {"Bark", "Fiasko", "Roots"},
+            {"Garold", "Leaves", "Stem"},
+            {"Jdyn", "Ne jdun", "Basya"},
+            {"Jdyn", "Mistrdydez", "Basya"},
+            {"Jdyn", "Ne jdun", "Respect"},
+            {"Jdyn", "Tut", "Basya"}
     };
 
 
 
-    private String mCorrectAnswers[] = {"Roots", "Leaves", "Flower", "Stem"};
-
-
-
-
-    public String getQuestion(int a) {
-        String question = mQuestions[a];
-        return question;
-    }
-
+    private int mCorrectAnswers[] = {0, 2, 1, 0, 0, 1, 2, 1};
 
     public String getChoice(int a, int index) {
         String choice0 = mChoices[a][index];
         return choice0;
     }
 
-    public String getCorrectAnswer(int a) {
-        String answer = mCorrectAnswers[a];
-        return answer;
+    public int getCorrectAnswer(int a) {
+        return mCorrectAnswers[a];
     }
 
+    public int getQuestionImageId(int questionIndex) {
+        return mQuestions[questionIndex];
+    }
 }

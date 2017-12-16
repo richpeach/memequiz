@@ -16,9 +16,8 @@ public class QuizActivity extends AppCompatActivity {
 
     private TextView mScoreView;
     private ImageButton quiz;
-    private String mAnswer;
+    private int mQuestionIndex;
     private int mScore = 0;
-    private int mQuestionNumber = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,27 +28,43 @@ public class QuizActivity extends AppCompatActivity {
         mAnswerViews[0] = (Button) findViewById(R.id.choice1);
         mAnswerViews[1] = (Button) findViewById(R.id.choice2);
         mAnswerViews[2] = (Button) findViewById(R.id.choice3);
+        mQuestionIndex = 0;
+        nextQuestion();
 
-        updateQuestion();
-
-        for (View view : mAnswerViews) {
+        int size = mAnswerViews.length;
+        for (int i = 0; i < size; i++) {
+            View view = mAnswerViews[i];
+            final int currentButtonIndex = i;
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Button button = (Button) view;
-                    if (button.getText() == mAnswer) {
-                        changeButtonColor(view, true);
+                    int correctAnswer = mQuestionLibrary.getCorrectAnswer(mQuestionIndex);
+                    boolean isCorrect = correctAnswer == currentButtonIndex;
+                    if (isCorrect) {
                         updateScoreView(mScore + 1);
-                        updateQuestion();
                         //This line of code is optiona
                         Toast.makeText(QuizActivity.this, "correct", Toast.LENGTH_SHORT).show();
 
                     } else {
                         Toast.makeText(QuizActivity.this, "wrong", Toast.LENGTH_SHORT).show();
-                        updateQuestion();
                     }
+                    changeButtonColor(view, isCorrect);
+                    view.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            clearButtons();
+                            nextQuestion();
+                        }
+                    }, 1000);
                 }
             });
+        }
+    }
+
+    private void clearButtons() {
+        for (View view : mAnswerViews) {
+            view.setBackgroundColor(Color.BLUE);
         }
     }
 
@@ -63,17 +78,16 @@ public class QuizActivity extends AppCompatActivity {
         view.setBackgroundColor(color);
     }
 
-    private void updateQuestion() {
-        quiz.setImageResource(R.drawable.dratyti);
+    private void nextQuestion() {
+        mQuestionIndex++;
+        int imageId = mQuestionLibrary.getQuestionImageId(mQuestionIndex);
+        quiz.setImageResource(imageId);
 
         int size = mAnswerViews.length;
         for (int i = 0; i < size; i++) {
             Button button = mAnswerViews[i];
-            button.setText(mQuestionLibrary.getChoice(mQuestionNumber, i));
+            button.setText(mQuestionLibrary.getChoice(mQuestionIndex, i));
         }
-
-        mAnswer = mQuestionLibrary.getCorrectAnswer(mQuestionNumber);
-        mQuestionNumber++;
     }
 
 
