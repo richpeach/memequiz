@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +15,7 @@ public class QuizActivity extends AppCompatActivity {
     private QuestionLibrary mQuestionLibrary = new QuestionLibrary();
 
     private TextView mScoreView;
-    private ImageButton quiz;
+    private ImageView quiz;
     private int mQuestionIndex;
     private int mScore = 0;
     private boolean canClick;
@@ -24,7 +24,7 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        quiz = (ImageButton) findViewById(R.id.header);
+        quiz = (ImageView) findViewById(R.id.header);
         mScoreView = (TextView) findViewById(R.id.score);
         mAnswerViews[0] = (Button) findViewById(R.id.choice1);
         mAnswerViews[1] = (Button) findViewById(R.id.choice2);
