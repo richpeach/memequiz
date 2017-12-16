@@ -91,6 +91,7 @@ public class QuizActivity extends AppCompatActivity {
                 button.setText(mQuestionLibrary.getChoice(mQuestionIndex, i));
             }
         } else {
+            setResult(mScore);
             finish();
         }
     }
