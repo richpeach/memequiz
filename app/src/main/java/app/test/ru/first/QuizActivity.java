@@ -28,7 +28,7 @@ public class QuizActivity extends AppCompatActivity {
         mAnswerViews[0] = (Button) findViewById(R.id.choice1);
         mAnswerViews[1] = (Button) findViewById(R.id.choice2);
         mAnswerViews[2] = (Button) findViewById(R.id.choice3);
-        mQuestionIndex = 0;
+        mQuestionIndex = -1;
         nextQuestion();
 
         int size = mAnswerViews.length;
